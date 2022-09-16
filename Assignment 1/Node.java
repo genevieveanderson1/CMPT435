@@ -1,4 +1,4 @@
-
+// 
 //building the framework for each node. the linked list is going to be made up of several nodes. 
 public class Node { //creating the node for the linked list  
     String name = ""; // declaring and initializing the name
@@ -6,9 +6,9 @@ public class Node { //creating the node for the linked list
 
     //uppercase N is referring to the node class
     //lowercase n is referring to the actual node with the information in it (could be called anything)
-    public Node(String n,Node node) { //constructor using two parameteres: the string and the node
-        name = n;
-        next = node;
+    public Node(String n, Node node) { //constructor using two parameteres: the string and the node //The first parameter is for the value the node is holding, the second parameter is for the pointer
+        this.name = n; 
+        this.next = node;
     } 
 
     // need two getters: information for the node, information for the pointer
@@ -17,7 +17,7 @@ public class Node { //creating the node for the linked list
     }
 
     //returning a node this time, not a string
-    public Node getNode() {
+    public Node getNext() {
         return next; //next because we are calling the pointer next
     }
 
@@ -29,6 +29,10 @@ public class Node { //creating the node for the linked list
     public void setNode(Node m) { //m is the node that we are going to set next equal to, for the pointer
         next = m; // I am using m so that the pointer is not null. the pointer will not be null until the end of the linked list.
     } 
+
+    //toString so that the program prints what is actually inside the node rather than the object identifier 
+    public String toString() {
+        String result = name; //setting a string equal to what is inside the node 
+        return result; 
+    } 
 }
-
-
