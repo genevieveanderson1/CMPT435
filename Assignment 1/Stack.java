@@ -1,42 +1,56 @@
-//building framework for the stack 
+//Building framework for the stack 
 public class Stack {
-    Node head; //uppercase Node is referring to the Node class I made before
+    //I am declaring that there is a head in the stack, the head will be initialized in the constructor
+    Node top; //Uppercase Node is referring to the Node class I made prior
     
-    //constructor
-    public Stack() { // because this has no parameters, this is a default constructor
-        head = null; //initiailizing that the stack is empty to begin
+    //Stack constructor
+    public Stack() { //This is a default constructor since there are no parameters
+        top = null; //Initiailizing that the stack is empty to begin
     }
 
-    //function 
-    //next I will build a function for pop, and a function for push
-    //The stack is made up of nodes, the node is made up of charachters
-    public Node pop() { //after public, always say the data type we are going to return
-        Node prevHead = null; //if there is nothing in the stack, then we will return null
-        if(head != null) { //&& is how you say and (Boolean) 
-            prevHead = head; //after popping the top node, return that node
-            head = head.getNext(); //setting the new head to the next node in the stack because it is now on the top
+    //I will build a function for push, pop, and seeing if the stack is empty
+    //The stack is made up of nodes, the node is made up of information and information and a pointer
+    
+    //Function for push
+    //Nothing will be returned in this function since we are only adding a node to the stack
+    //For the push function, we needed to return a node becuase that is how we will check whether it is a palindrome
+    public void push(Node newNode) { //Parameter is Node because there is a new node coming in to the top of the stack, and we must take it from the linked list
+        newNode.next = top;
+        top = newNode;
+        // newnode.next = top;
+        // top = newnode;
+
+        //n.next = m;
+        //n.setNode(head); //Telling the new node to point to the previous head, so that the new node can soon become the new head
+        //head = n; //Setting the incoming node to the new head of the stack  
+    }
+
+    //Function for pop
+    public Node pop() { ////No parameter needed because the function is only using information from the class
+        Node prevTop = null; //If there is nothing in the stack, then we will return null
+        if(top != null) { 
+            prevTop = top; //After popping the top node, return that node and make the previous head the new head
+            top = top.getNext(); //Setting the new head to the next node in the stack, since it is now on the top
         }
-        return prevHead; //returning the node that was taken off, returning outside the if statement because we have to return something, not just if the "if" conditions are met
+        return prevTop; //Returning the node that was taken off
     }
 
-    //do something with the charachters in the nodes 
-    //
-    
-    // function for checking if the stack is empty 
-    public Boolean isEmpty() {
-        if(head == null) { //two equal signs because it is boolean
+     //Function for checking if the stack is empty 
+     public Boolean isEmpty() {
+        if(top == null) { 
             return true;
         }
         else {
             return false;
         }
     }
-    //tfunction for push
-    public void push(Node n) { //we need a parameter for this one because there is a new node coming in to the top of the stack
-        n.setNode(head); //Telling the new node to point to the previous head, so that the new node can soon become the new head and point to the next node
-        head = n; // setting the head to the new node on top of the stack 
-    }
 }
 
-//global variable - applies to the entire class
-//regular variable - only applies to the specific functin its within
+
+//Miscellaneous comments
+    // Constructors turn the frameowork from the different classes into actual objects
+    //Two equal signs if boolean
+    //&& is how you say and (Boolean)
+    //When biulding a function, after "public", always say the data type we are going to return (Node, Boolean, String, etc.)
+    //global variable - applies to the entire class
+    //regular variable - only applies to the specific functin its within
