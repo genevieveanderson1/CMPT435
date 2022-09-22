@@ -21,14 +21,14 @@ public class  Main {
             item = item.toUpperCase(); //Changing everything to upper case
             item = item.replaceAll("\\s+",""); //Replacing the spaces with no space
             //We must put the string of magic items in a node because the queue method takes nodes not strings
-            Node magicItemsNode = new Node(item, null); //Parameters are the string of magic items, then the null pointer - null because this node is only a list of the magic items
-            magicItems.enqueue(magicItemsNode); //cCalling enqueue from Queue class, the parameter is because we must indicate that each phrase is on its own 
+            Node magicItemsNode = new Node(item, null); //Parameters are the string of magic items, then the null pointer - null because this node is only a list of the magic items. Making a new node to put the phrase into.
+            magicItems.enqueue(magicItemsNode); //Calling enqueue from Queue class, the parameter is because we must indicate that each phrase is on its own
         }
-       }
+    }
        catch (FileNotFoundException e) { //If we cant find the file
             e.printStackTrace();
        }
-    
+   
        //While loop so the program accounts for the entire file of magic items - not just one phrase
        while (magicItems.isEmpty() == false) { //While the queue is not empty, so that we know that we can take charachters from it
             Node phraseNode = magicItems.dequeue(); //Creating a new node to put the dequeed magic items in
@@ -37,45 +37,40 @@ public class  Main {
                 System.out.println(phraseNode.getName()); //If it is a palindrome, then we will print it
             }
        }  
-    } 
+    }
 
-    //left off here for comments
-
-    //Method to check whether or not the phrase is a palindrome 
-    public static Boolean palindromeCheck(Node y) { //Parameter is a node, because we are using dequeue items which are in a Node 
+    //Function to check whether or not the phrase is a palindrome
+    public static Boolean palindromeCheck(Node y) { //Parameter is a node, because we are using dequeue items which are in a Node
         Boolean palindromeCheck = true; //Initializing the checker to true, while checking for palindromes it will change based on whether or not it is a palindrome
         String phraseString = y.getName(); //Putting the node that contains the dequeued items into a string so that we can seperate it charachter by charachter
         Stack palindromeStack = new Stack(); //intializing the stack to check whether its palindrome
         Queue palindromeQueue = new Queue(); //initializing the queue to check whether its a palindrom
         for (int i = 0; i < phraseString.length(); i++) { //int i = 0 so that it starts at the beginning of the string, i < length to make sure it doesn't go past one phrase at a time, i++ so that increments by 1
-            String phraseCharachter = phraseString.substring(i, i+1); //String that contains the charachters of each phrase
-            Node charachterNode = new Node(phraseCharachter, null); //creating a new node with only the charachter
-            palindromeStack.push(charachterNode); //pushing the single charachter node into the stack
-            palindromeQueue.enqueue(charachterNode); //enqueueing the single charachter into the queue
-        } 
-
-        while (palindromeStack.isEmpty() == false) { //while the stack with the charachters is not empty, we will continue to check the word for whether or not it is a palindrome
-            Node checkStack = palindromeStack.pop(); //Simultaneously popping and dequeuing from the stack and queue to check whether its a palindrome
-            Node checkQueue = palindromeQueue.dequeue();
-            if (!(checkStack.getName().equals(checkQueue.getName()))) { //.equals is function for comparing strings 
-                palindromeCheck = false; //only one equal sign because we are actually setting it to false
-                break;
-            }
-
+            String phraseCharachter = phraseString.substring(i, i+1); //String that contains the charachters of each phrase, i +1
+            Node charachterNode = new Node(phraseCharachter, null); //Creating a new node with only the charachter
+            palindromeStack.push(charachterNode); //Pushing the single charachter node into the stack
+            palindromeQueue.enqueue(charachterNode); //Enqueueing the single charachter node into the queue
         }
-        return palindromeCheck; //showing the result of the comparison
+
+        while (palindromeStack.isEmpty() == false) { //While the stack with the charachters is not empty, continue to check the word for whether or not it is a palindrome
+            Node checkQueue = palindromeQueue.dequeue(); //Simultaneously dequeuing and popping from the stack and queue to check whether its a palindrome
+            Node checkStack = palindromeStack.pop();
+            if (!(checkStack.getName().equals(checkQueue.getName()))) { //.equals function for comparing strings
+                palindromeCheck = false; //Only one equal sign because we are actually setting the checker to false
+            }
+        }
+        return palindromeCheck; //Providing the result of the comparison
     }
 }
-
 
 //Old code from when I was checking if my stack queue and node classes worked
 /*Node nodeOne = new Node("a", null);
         Node nodeTwo = new Node("b", null);
-        Node nodeThree = new Node("c", null); 
+        Node nodeThree = new Node("c", null);
 
         Node nodeFour = new Node("a", null);
         Node nodeFive = new Node("b", null);
-        Node nodeSix = new Node("c", null); 
+        Node nodeSix = new Node("c", null);
 
 
         Stack stackOne = new Stack(); //initializing a stack
@@ -95,5 +90,5 @@ public class  Main {
 
         while (queueOne.isEmpty() == false) {
             Node queued = queueOne.dequeue();
-            System.out.println(queued); 
+            System.out.println(queued);
         } */
