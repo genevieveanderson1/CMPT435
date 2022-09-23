@@ -39,12 +39,3 @@ public class Stack {
         }
     }
 }
-
-
-//Miscellaneous comments
-    //Constructors turn the frameowork from the different classes into actual objects
-    //Two equal signs if boolean
-    //&& is how you say and (Boolean)
-    //When biulding a function, after "public", always say the data type we are going to return (Node, Boolean, String, etc.)
-    //global variable - applies to the entire class
-    //regular variable - only applies to the specific functin its within

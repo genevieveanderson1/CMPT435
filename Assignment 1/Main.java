@@ -13,21 +13,21 @@ public class  Main {
         //Create a new queue, declare and initialize for holding all the magic items
         Queue magicItems = new Queue(); //Making a variable magicItems of the queue data type
         try { //Trying to find the file
-        File file = new File("magicitems.txt");
-        Scanner sc = new Scanner(file);
+            File file = new File("magicitems.txt");
+            Scanner sc = new Scanner(file);
        
-        while (sc.hasNextLine()) {
-            String item = sc.nextLine();
-            item = item.toUpperCase(); //Changing everything to upper case
-            item = item.replaceAll("\\s+",""); //Replacing the spaces with no space
-            //We must put the string of magic items in a node because the queue method takes nodes not strings
-            Node magicItemsNode = new Node(item, null); //Parameters are the string of magic items, then the null pointer - null because this node is only a list of the magic items. Making a new node to put the phrase into.
-            magicItems.enqueue(magicItemsNode); //Calling enqueue from Queue class, the parameter is because we must indicate that each phrase is on its own
+            while (sc.hasNextLine()) {
+                String item = sc.nextLine();
+                item = item.toUpperCase(); //Changing everything to upper case
+                item = item.replaceAll("\\s+",""); //Replacing the spaces with no space
+                //We must put the string of magic items in a node because the queue method takes nodes not strings
+                Node magicItemsNode = new Node(item, null); //Parameters are the string of magic items, then the null pointer - null because this node is only a list of the magic items. Making a new node to put the phrase into.
+                magicItems.enqueue(magicItemsNode); //Calling enqueue from Queue class, the parameter is because we must indicate that each phrase is on its own
+            }
         }
-    }
        catch (FileNotFoundException e) { //If we cant find the file
             e.printStackTrace();
-       }
+        }
    
        //While loop so the program accounts for the entire file of magic items - not just one phrase
        while (magicItems.isEmpty() == false) { //While the queue is not empty, so that we know that we can take charachters from it
@@ -36,7 +36,7 @@ public class  Main {
             if (palindromeBoolean == true) {
                 System.out.println(phraseNode.getName()); //If it is a palindrome, then we will print it
             }
-       }  
+        }  
     }
 
     //Function to check whether or not the phrase is a palindrome
@@ -62,6 +62,8 @@ public class  Main {
         return palindromeCheck; //Providing the result of the comparison
     }
 }
+
+//Note: tested if program worked on blank.txt file
 
 //Old code from when I was checking if my stack queue and node classes worked
 /*Node nodeOne = new Node("a", null);
@@ -92,3 +94,11 @@ public class  Main {
             Node queued = queueOne.dequeue();
             System.out.println(queued);
         } */
+
+//Miscellaneous comments
+    //Constructors turn the frameowork from the different classes into actual objects
+    //Two equal signs if boolean
+    //&& is how you say and (Boolean)
+    //When biulding a function, after "public", always say the data type we are going to return (Node, Boolean, String, etc.)
+    //global variable - applies to the entire class
+    //regular variable - only applies to the specific functin its within

@@ -2,7 +2,7 @@
 //Building the framework for each node. the linked list is going to be made up of several nodes.
 
 public class Node { //Creating the node for the linked list  
-    String name = ""; //Declaring and initializing the information inside the node
+    String name = ""; //Declaring and initializing the name inside the node
     Node next = null; //Declaring and initializing the node pointer
 
 
