@@ -1,4 +1,5 @@
 public class Insertion {
+
     String[] magicItems;  // Declaring that there is a string array
 
     public Insertion(String[] magicItems) { // String array
@@ -6,41 +7,41 @@ public class Insertion {
     }
 
     // Function for selection sort 
-
-    // Programming lab help
     public void Insertion() {
         int n = magicItems.length;
-
-        /*for (int i = 1; i < n; i++) {
-            String key = magicItems[i];
-            int j = i - 1;
-
-            while (j >= 0 && key.compareTo(magicItems[j]) < 0) {// Comparing the key to the magic items instead of vice verse. Checks if j is >= 0 first. 
-                magicItems[j + 1] = magicItems[j];
-                j--;
-            }
-
-            magicItems[j + 1] = key;
-        }*/
 
 
         // Changing my code to follow format of programming lab
 
         for (int i = 1; i < n; i++) { 
-            int j = i - 1; // What does this mean?
-            String smallPosition = magicItems[i]; // Do these variable names make sense?
+            int j = i - 1; 
+            String smallPosition = magicItems[i]; 
 
-            while (j >= 0 && smallPosition.compareTo(magicItems[j]) < 0) {
+            while (j >= 0 && smallPosition.compareTo(magicItems[j]) < 0) { // Comparing the small position to the magic items,  Checks if j is >= 0 prior
                 magicItems[j + 1] = magicItems[j];
-                j--;
+                j--;  
             }
             // After determining the correct order of values, things need to get shifted
             magicItems[j+1] = smallPosition; 
+        } 
+    }
+
+    // Function for to string - returning what is inside the node rather than the object ID
+    // Convert string array to string for printing the sorted list
+    public String toString() {
+        String result = ""; // Setting a string equal to what is inside the node
+        for (int i = 0; i < magicItems.length; i++) {
+            result += magicItems[i] + "\n"; // += is adding each result on to the previous result, \n is so that it gets split up by line 
         }
+        return result;
+    }
 
+    // Need something to print the number of comparisons - only the comparisons between magic items
+    // cant cound comparisons inside of something like an if statement becuase that wont count all instances of comparison
 
+}
 
-        // Original code that didn't work 
+// Original code that didn't work 
 
         /*for (int i = 0; i < n - 1; i++) { 
             int smallPosition = i;
@@ -58,15 +59,16 @@ public class Insertion {
             }
             magicItems[i] = magicItems[minIndex]; // Moving the smallest value to the front
         }*/
-    }
 
-    // Function for to string - returning what is inside the node rather than the object ID
-    // Convert string array to string for printing the sorted list
-    public String toString() {
-        String result = ""; // Setting a string equal to what is inside the node
-        for (int i = 0; i < magicItems.length; i++) {
-            result += magicItems[i] + "\n"; // += is adding each result on to the previous result, \n is so that it gets split up by line 
-        }
-        return result;
-    }
-}
+// Programming lab help
+
+        /*for (int i = 1; i < n; i++) {
+            String key = magicItems[i];
+            int j = i - 1;
+
+            while (j >= 0 && key.compareTo(magicItems[j]) < 0) { 
+                magicItems[j + 1] = magicItems[j];
+                j--;
+            }
+            magicItems[j + 1] = key;
+        }*/

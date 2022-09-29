@@ -8,7 +8,7 @@ public class Selection {
     }
 
     // Function for selection sort 
-    public void Selection() {
+    public void selection() {
         int n = magicItems.length;
         for (int i = 0; i < n - 2; i++) { // Begin at 0; go until n - 2; increment by 1
             int smallPosition = i; // Setting small position variable to i
@@ -34,4 +34,6 @@ public class Selection {
         }
         return result;
     }  
+
+    // Need something to print the number of comparisons
 }

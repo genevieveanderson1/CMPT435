@@ -22,15 +22,19 @@ public class Main {
             e.printStackTrace();
         }
 
-        //Testing selection sort
-        // Selection magicItemsSelection = new Selection(magicItems);
-        //magicItemsSelection.Selection();
-        //System.out.println(magicItemsSelection);
+        //Testing to see if queue is populating correctly
+        Quick magicItemsQuick = new Quick(magicItems);
+        magicItemsQuick.quick();
+
+        /*Testing selection sort
+        Selection magicItemsSelection = new Selection(magicItems);
+        magicItemsSelection.selection();
+        System.out.println(magicItemsSelection);
 
         //Testing insertion sort
         Insertion magicItemsInsertion = new Insertion(magicItems);
         magicItemsInsertion.Insertion();
-        System.out.println(magicItemsInsertion);
+        System.out.println(magicItemsInsertion); */
     } 
 }
 
