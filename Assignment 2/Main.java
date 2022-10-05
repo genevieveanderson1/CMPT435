@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -23,18 +24,23 @@ public class Main {
         }
 
         //Testing to see if queue is populating correctly
-        Quick magicItemsQuick = new Quick(magicItems);
-        magicItemsQuick.quick();
+        //Quick magicItemsQuick = new Quick(magicItems);
+        //magicItemsQuick.quick();
 
-        /*Testing selection sort
-        Selection magicItemsSelection = new Selection(magicItems);
-        magicItemsSelection.selection();
-        System.out.println(magicItemsSelection);
+        //Testing selection sort
+        //Selection magicItemsSelection = new Selection(magicItems);
+        //magicItemsSelection.selection();
+        //System.out.println(magicItemsSelection);
 
         //Testing insertion sort
-        Insertion magicItemsInsertion = new Insertion(magicItems);
-        magicItemsInsertion.Insertion();
-        System.out.println(magicItemsInsertion); */
+        //Insertion magicItemsInsertion = new Insertion(magicItems);
+        //magicItemsInsertion.Insertion();
+        //System.out.println(magicItemsInsertion); 
+
+         //Testing quick sort
+         Quick magicItemsQuick = new Quick(magicItems);
+         magicItemsQuick.quick(magicItems, 0, magicItems.length - 1);
+         System.out.println(magicItemsQuick);
     } 
 }
 
