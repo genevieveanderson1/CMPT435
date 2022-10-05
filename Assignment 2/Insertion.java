@@ -1,6 +1,7 @@
 public class Insertion {
 
     String[] magicItems;  // Declaring that there is a string array of the magic items
+    int comparisons = 0; 
 
     // Constructor
     public Insertion(String[] magicItems) { // String array
@@ -8,11 +9,8 @@ public class Insertion {
     }
 
     // Function for insertion sort 
-    public void Insertion() {
+    public int insertionSort() {
         int n = magicItems.length;
-
-
-        // Changing my code to follow format of programming lab
         for (int i = 1; i < n; i++) { 
             int j = i - 1; 
             String smallPosition = magicItems[i]; 
@@ -21,10 +19,12 @@ public class Insertion {
             while (j >= 0 && smallPosition.compareTo(magicItems[j]) < 0) { // Comparing the small position to the magic items,  Checks if j is >= 0 prior
                 magicItems[j + 1] = magicItems[j];
                 j--;  
+                comparisons ++;
             }
             // After determining the correct order of values, things need to get shifted
             magicItems[j+1] = smallPosition; // How is this different than whats above in the while loop?
         } 
+        return comparisons;
     }
 
     // Function for to string - returning what is inside the node rather than the object ID
@@ -62,6 +62,7 @@ public class Insertion {
         }*/
 
 // Programming lab help
+// Changed my code above to follow this format
 
         /*for (int i = 1; i < n; i++) {
             String key = magicItems[i];

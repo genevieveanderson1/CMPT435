@@ -1,6 +1,7 @@
 public class Selection {
 
     String[] magicItems;  // Declaring that there is a string array
+    int comparisons = 0; 
 
     // Selection sort constructor
     public Selection(String[] magicItems) { 
@@ -8,11 +9,13 @@ public class Selection {
     }
 
     // Function for selection sort 
-    public void selection() {
+    public int selectionSort() {
         int n = magicItems.length;
         for (int i = 0; i < n - 2; i++) { // Begin at 0; go until n - 2; increment by 1
             int smallPosition = i; // Setting small position variable to i
             for (int j = i + 1; j < n; j++) { // Begin at i (small position); go until n - 1; increment by 1
+
+                comparisons ++; // also counting comparisons here
                 if (magicItems[j].compareTo(magicItems[smallPosition]) < 0) { // If j is less than smallPostion then it will return a negative output
                     smallPosition = j; // Setting the small position variable to j if ......
                 }
@@ -22,6 +25,8 @@ public class Selection {
             magicItems[smallPosition] = magicItems[i]; // Swapping 
             magicItems[i] = temp; // Completing the swap, both values will be where they belong
         }
+
+        return comparisons;
     }
 
     //Function for toString - returning what is inside the node rather than the object ID

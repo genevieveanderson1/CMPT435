@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Quick { 
     String[] magicItems;
+    int comparisons = 0;
     
     public Quick(String[] magicItems) {
         this.magicItems = magicItems;
@@ -65,16 +66,18 @@ public class Quick {
         int i = low - 1;
         
         for (int j = low; j < high; j++) { 
+            
             if (A[j].compareTo(pivot) < 0) { // If the second value is less than the last item in the array
                 i = i + 1; 
                 swap(A, i, j); // Swapping the value located at i, with a smaller value
             }
+            comparisons++;
         }
         swap(A, i + 1, high); // Swapping so that the pivot value is where it belongs
         return i + 1;
     }
 
-    public void quick(String[] originalA, int startIndex, int endIndex) { // parameters start and end index so that when the array is getting split we can reference where to split
+    public int quick(String[] originalA, int startIndex, int endIndex) { // parameters start and end index so that when the array is getting split we can reference where to split
         // String[] A = originalA;
         // String[] A = Arrays.copyOfRange(originalA, startIndex, endIndex); // Inclusive, exlcusive - it will go up until the value but not use it
         if (startIndex < endIndex) {
@@ -84,6 +87,8 @@ public class Quick {
             quick(originalA, startIndex, split - 1); // quick method from 1 to end of the values before the pivot value
             quick(originalA, split+1, endIndex); // quick method from first value after the pivot to the end of the array
         }
+
+        return comparisons;
     }
 
      //Function for toString - returning what is inside the node rather than the object ID
