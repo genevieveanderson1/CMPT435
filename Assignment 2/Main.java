@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -32,6 +33,8 @@ public class Main {
 
         Quick quick = new Quick(magicItems);
 
+        Merge merge = new Merge(magicItems);
+
         //Testing to see if queue is populating correctly
         //Quick magicItemsQuick = new Quick(magicItems);
         //magicItemsQuick.quick();
@@ -46,16 +49,42 @@ public class Main {
         //Insertion magicItemsInsertion = new Insertion(magicItems);
         //magicItemsInsertion.Insertion();
         //System.out.println(magicItemsInsertion); 
-        System.out.println(insertSort.insertionSort());
-        System.out.println(selectionSort.selectionSort());
-        System.out.println(quick.quick(magicItems, 0, magicItems.length - 1));
+
+
+
+        //System.out.println(insertSort.insertionSort()); // Printing comparisons for insertion sort
+        //System.out.println(selectionSort.selectionSort()); // Printing comparisons for selection sort
+
+        shuffle(magicItems);
+        quick.quick(magicItems, 0, magicItems.length - 1);
+        System.out.println(quick); // Printing comparisons for quick sort
+        // System.out.println(quick.quick(magicItems, 0, magicItems.length - 1)); // Printing comparisons for quick sort
+        shuffle(magicItems);
+        merge.mergeSort(magicItems, 0, magicItems.length - 1);
+        System.out.println(merge); // Printing comparisons for quick sort
 
 
         //Testing quick sort
         //Quick magicItemsQuick = new Quick(magicItems);
         //magicItemsQuick.quick(magicItems, 0, magicItems.length - 1);
         //System.out.println(magicItemsQuick);
+
+        //Testing merge sort
+        //Merge magicItemsMerge = new Merge(magicItems);
+        //magicItemsMerge.mergeSort(magicItems, 0, magicItems.length - 1);
+        //System.out.println(magicItemsMerge);
     } 
+
+
+    public static void shuffle(String[] magicItems){
+        Random random = new Random();
+        for (int i = magicItems.length - 1; i > 0; i--) {
+            int randInt = random.nextInt(i+1);
+            String temp = magicItems[i];
+            magicItems[i] = magicItems[randInt];
+            magicItems[randInt] = temp;
+        }
+    }
 }
 
 

@@ -14,7 +14,6 @@ public class Insertion {
         for (int i = 1; i < n; i++) { 
             int j = i - 1; 
             String smallPosition = magicItems[i]; 
-
             // Moving elements that are larger than the smallPosition to one position in front of where it currently is
             while (j >= 0 && smallPosition.compareTo(magicItems[j]) < 0) { // Comparing the small position to the magic items,  Checks if j is >= 0 prior
                 magicItems[j + 1] = magicItems[j];

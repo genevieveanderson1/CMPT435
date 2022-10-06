@@ -1,7 +1,7 @@
 public class Selection {
 
     String[] magicItems;  // Declaring that there is a string array
-    int comparisons = 0; 
+    int comparisons = 0; // Declaring the comparisons
 
     // Selection sort constructor
     public Selection(String[] magicItems) { 
@@ -11,26 +11,24 @@ public class Selection {
     // Function for selection sort 
     public int selectionSort() {
         int n = magicItems.length;
-        for (int i = 0; i < n - 2; i++) { // Begin at 0; go until n - 2; increment by 1
+        for (int i = 0; i < n - 2; i++) { 
             int smallPosition = i; // Setting small position variable to i
-            for (int j = i + 1; j < n; j++) { // Begin at i (small position); go until n - 1; increment by 1
-
-                comparisons ++; // also counting comparisons here
-                if (magicItems[j].compareTo(magicItems[smallPosition]) < 0) { // If j is less than smallPostion then it will return a negative output
+            for (int j = i + 1; j < n; j++) { 
+                comparisons ++; // Counting comparisons here
+                if (magicItems[j].compareTo(magicItems[smallPosition]) < 0) { // If j is less than smallPostion then it will ....
                     smallPosition = j; // Setting the small position variable to j if ......
                 }
             }
             //Swapping the values will require a temporary variable
-            String temp = magicItems[smallPosition]; // Setting the temporary variable to i because i is the small position
+            String temp = magicItems[smallPosition]; // Setting the temporary variable to the small position
             magicItems[smallPosition] = magicItems[i]; // Swapping 
-            magicItems[i] = temp; // Completing the swap, both values will be where they belong
+            magicItems[i] = temp; // Completing the swap, both values will now be where they belong
         }
-
-        return comparisons;
+        return comparisons; // Final comparison count
     }
 
-    //Function for toString - returning what is inside the node rather than the object ID
-    //Convert string array to string for printing the sorted list
+    // Function for toString - returning what is inside the node rather than the object ID
+    // Convert string array to string for printing the sorted list
     public String toString() {
         String result = ""; // Initializing result variable as empty
         for (int i = 0; i < magicItems.length; i++) { // Beginning at 0; go until the end of magic items; increment by 1
@@ -39,6 +37,4 @@ public class Selection {
         }
         return result;
     }  
-
-    // Need something to print the number of comparisons
 }

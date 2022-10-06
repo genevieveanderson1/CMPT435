@@ -9,18 +9,16 @@ public class Quick {
     }
 
     // Thought process
-        // First, choose 3 random values
-        // Then, find the value in the middle of the random values
-        // Use this value as the pivot 
+        // First, choose random value as pivot
         // Compare all other values to the pivot and store them in arrays for lesser values, and greater values
         // Repeat this process until the magic items are fully sorted
 
-    // To preseve O(nlogn) I will choose three random values from the magic items to compare to one another to decide a pivot point
+    // To preseve O(nlogn) I will attempt to choose a pivot which is not the highest or lowest value
     public void choosePivot(String[] A, int low, int high) { // 
-        Random rand = new Random();
-        int pivot = rand.nextInt(high - low) + low; // Doesn't allow for pivot value of the highest or lowest value
+        Random random = new Random();
+        int pivot = random.nextInt(high - low) + low; // Doesn't allow for pivot value of the highest or lowest value, but rather a random value inbetween
 
-        String tmp = A[pivot];
+        String tmp = A[pivot]; // What is this
         A[pivot] = A[high];
         A[high] = tmp;
         
@@ -77,7 +75,7 @@ public class Quick {
         return i + 1;
     }
 
-    public int quick(String[] originalA, int startIndex, int endIndex) { // parameters start and end index so that when the array is getting split we can reference where to split
+    public void quick(String[] originalA, int startIndex, int endIndex) { // parameters start and end index so that when the array is getting split we can reference where to split
         // String[] A = originalA;
         // String[] A = Arrays.copyOfRange(originalA, startIndex, endIndex); // Inclusive, exlcusive - it will go up until the value but not use it
         if (startIndex < endIndex) {
@@ -87,18 +85,17 @@ public class Quick {
             quick(originalA, startIndex, split - 1); // quick method from 1 to end of the values before the pivot value
             quick(originalA, split+1, endIndex); // quick method from first value after the pivot to the end of the array
         }
-
-        return comparisons;
     }
 
      //Function for toString - returning what is inside the node rather than the object ID
     //Convert string array to string for printing the sorted list
     public String toString() {
         String result = ""; // Initializing result variable as empty
-        for (int i = 0; i < magicItems.length; i++) { // Beginning at 0; go until the end of magic items; increment by 1
+        /*for (int i = 0; i < magicItems.length; i++) { // Beginning at 0; go until the end of magic items; increment by 1
             // Setting result to a string of all of the magic items 
             result += magicItems[i] + "\n"; //+= is adding each result on to the previous result, \n is so that it gets split up by line 
-        }
+        }*/
+        result += "Quick sort comparisons: " + comparisons;
         return result;
     }  
 }
