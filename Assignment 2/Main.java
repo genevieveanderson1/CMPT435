@@ -25,19 +25,13 @@ public class Main {
         }
 
         Insertion insertSort = new Insertion(magicItems);
-
         Selection selectionSort = new Selection(magicItems);
-
         Quick quick = new Quick(magicItems);
+        Merge merge = new Merge(magicItems); 
 
-        Merge merge = new Merge(magicItems);
-
-        //Prior to each sort being run, I will shuffle the list of magic items 
-
-
-        shuffle(magicItems);
-        selectionSort.selectionSort(magicItems);
-        System.out.println(selectionSort);
+        shuffle(magicItems); // Shuffling
+        selectionSort.selectionSort(magicItems); // Running the algorithm
+        System.out.println(selectionSort); // Printing the comparisons
 
         shuffle(magicItems);
         insertSort.insertionSort(magicItems);
@@ -45,26 +39,25 @@ public class Main {
 
         shuffle(magicItems);
         quick.quick(magicItems, 0, magicItems.length - 1);
-        System.out.println(quick); // Printing comparisons for quick sort
-        // System.out.println(quick.quick(magicItems, 0, magicItems.length - 1)); // Printing comparisons for quick sort
+        System.out.println(quick); 
+
         shuffle(magicItems);
         merge.mergeSort(magicItems, 0, magicItems.length - 1);
-        System.out.println(merge); // Printing comparisons for merge sort
+        System.out.println(merge); 
     } 
 
+    // Shuffle function
+    // Will be called prior to each sort being ran
     public static void shuffle(String[] magicItems){
         Random random = new Random();
-        for (int i = magicItems.length - 1; i > 0; i--) {
-            int randInt = random.nextInt(i+1);
-            String temp = magicItems[i];
-            magicItems[i] = magicItems[randInt];
+        for (int i = magicItems.length - 1; i > 0; i--) { // Shuffling beginning from the last element
+            int randInt = random.nextInt(i+1); // Choosing a random index for the shuffling
+            String temp = magicItems[i]; // Setting the temporary variable to magicItems[i] to prepare for swap
+            magicItems[i] = magicItems[randInt]; // Swapping
             magicItems[randInt] = temp;
         }
     }
 }
-
-//System.out.println(insertSort.insertionSort()); // Printing comparisons for insertion sort
-//System.out.println(selectionSort.selectionSort()); // Printing comparisons for selection sort
 
 /*
 Code from when I was testing my sorts
