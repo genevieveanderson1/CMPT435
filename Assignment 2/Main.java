@@ -5,8 +5,6 @@ import java.util.Scanner;
 import java.util.*;
 
 public class Main {
-
-    
     public static void main (String[] args) { 
         String[] magicItems = new String[666]; 
         try { //Trying to find the file
@@ -26,7 +24,6 @@ public class Main {
             e.printStackTrace();
         }
 
-
         Insertion insertSort = new Insertion(magicItems);
 
         Selection selectionSort = new Selection(magicItems);
@@ -35,25 +32,16 @@ public class Main {
 
         Merge merge = new Merge(magicItems);
 
-        //Testing to see if queue is populating correctly
-        //Quick magicItemsQuick = new Quick(magicItems);
-        //magicItemsQuick.quick();
-
-        //Testing selection sort
-        //Selection magicItemsSelection = new Selection(magicItems);
-        //magicItemsSelection.selection();
-        //System.out.println(magicItemsSelection);
-        //System.out.println(comparisons);
-
-        //Testing insertion sort
-        //Insertion magicItemsInsertion = new Insertion(magicItems);
-        //magicItemsInsertion.Insertion();
-        //System.out.println(magicItemsInsertion); 
+        //Prior to each sort being run, I will shuffle the list of magic items 
 
 
+        shuffle(magicItems);
+        selectionSort.selectionSort(magicItems);
+        System.out.println(selectionSort);
 
-        //System.out.println(insertSort.insertionSort()); // Printing comparisons for insertion sort
-        //System.out.println(selectionSort.selectionSort()); // Printing comparisons for selection sort
+        shuffle(magicItems);
+        insertSort.insertionSort(magicItems);
+        System.out.println(insertSort);
 
         shuffle(magicItems);
         quick.quick(magicItems, 0, magicItems.length - 1);
@@ -61,20 +49,8 @@ public class Main {
         // System.out.println(quick.quick(magicItems, 0, magicItems.length - 1)); // Printing comparisons for quick sort
         shuffle(magicItems);
         merge.mergeSort(magicItems, 0, magicItems.length - 1);
-        System.out.println(merge); // Printing comparisons for quick sort
-
-
-        //Testing quick sort
-        //Quick magicItemsQuick = new Quick(magicItems);
-        //magicItemsQuick.quick(magicItems, 0, magicItems.length - 1);
-        //System.out.println(magicItemsQuick);
-
-        //Testing merge sort
-        //Merge magicItemsMerge = new Merge(magicItems);
-        //magicItemsMerge.mergeSort(magicItems, 0, magicItems.length - 1);
-        //System.out.println(magicItemsMerge);
+        System.out.println(merge); // Printing comparisons for merge sort
     } 
-
 
     public static void shuffle(String[] magicItems){
         Random random = new Random();
@@ -87,4 +63,24 @@ public class Main {
     }
 }
 
+//System.out.println(insertSort.insertionSort()); // Printing comparisons for insertion sort
+//System.out.println(selectionSort.selectionSort()); // Printing comparisons for selection sort
 
+/*
+Code from when I was testing my sorts
+
+Quick magicItemsQuick = new Quick(magicItems);
+magicItemsQuick.quick(magicItems, 0, magicItems.length - 1);
+System.out.println(magicItemsQuick);
+
+Merge magicItemsMerge = new Merge(magicItems);
+magicItemsMerge.mergeSort(magicItems, 0, magicItems.length - 1);
+System.out.println(magicItemsMerge);
+
+Selection magicItemsSelection = new Selection(magicItems);
+magicItemsSelection.selection();
+System.out.println(magicItemsSelection);
+
+Insertion magicItemsInsertion = new Insertion(magicItems);
+magicItemsInsertion.Insertion();
+System.out.println(magicItemsInsertion);*/
