@@ -28,10 +28,10 @@ public class Linear {
         for (int i = 0; i < targetArray.length; i++) { // Beginning at 0; go until the end of target array; increment by 1
             totalComparisons += comparisons;
             comparisons = 0;
-            result += "\n" + (i+1) + ": target word - " + targetArray[i] + " and the number of comparisons is: " + linear(targetArray[i]);
+            result += "\n" + (i+1) + ": target word: " + targetArray[i] + " and the number of comparisons is: " + linear(targetArray[i]);
         }
         double average = ((double)(totalComparisons))/targetArray.length; // dobule for decimal places
-        result += "\n Average: =" + average; // Labeling average
+        result += "\n Average: =" + String.format("%.2f", average); // Labeling average
         return result;
     }
 }

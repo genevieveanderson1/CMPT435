@@ -25,6 +25,7 @@ public class Main {
 
         quick.quick(magicItems, 0, magicItems.length - 1);
 
+        // Sort the same 42 items from linear and binary to compare the two searches to each other
         String[] targetArray = new String[42]; // String array with 42 items
 
         for (int i = 0; i < targetArray.length; i++) {
