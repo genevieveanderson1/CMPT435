@@ -30,7 +30,7 @@ public class Main {
 
         for (int i = 0; i < targetArray.length; i++) {
             Random random = new Random();
-            int randInt = random.nextInt(magicItems.length); // idk if this is choosing repreats - is that okay?
+            int randInt = random.nextInt(magicItems.length); // idk if this is choosing repeats - is that okay?
             targetArray[i] = magicItems[randInt]; // Randomly choosing the items we are going to search for in the binary search
             // System.out.println(targetArray[i]); Printing the value that will be searched
         }

@@ -10,11 +10,12 @@ public class BinarySearch {
         comparisons = 0;
     }
 
-    /*create local variable called return value
-    return true
-    return false
-    resturn value*/
-    // Does my code tell us where the value is found?
+    // Do i need to know the index of the value being searched?
+    // If it is found, where is it?
+    // binary search return int that is the index of the array where the target was found
+    // dont modify the array
+    // only modify the index of where we start and stop
+
 
     // Function for Binary Search
     public int binary(String [] A, int start, int stop, String target) {
