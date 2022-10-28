@@ -10,7 +10,7 @@ public class BinarySearch {
         comparisons = 0;
     }
 
-    // Do i need to know the index of the value being searched?
+    // need to know the index of the value being searched
     // If it is found, where is it?
     // binary search return int that is the index of the array where the target was found
     // dont modify the array
@@ -26,7 +26,7 @@ public class BinarySearch {
         }
         else if (target.equals(A[midPoint])) {
             // Should I return comparisons here or midpoint?
-            return comparisons; // midPoint is the index of what we are searching for
+            return midPoint; // midPoint is the index of what we are searching for
         }
         else if (target.compareTo(A[midPoint])<0) {
             return binary(A, start, midPoint, target); // Recursion for the first half of the array
@@ -43,7 +43,7 @@ public class BinarySearch {
         for (int i = 0; i < targetArray.length; i++) { // Beginning at 0; go until the end of target array; increment by 1
             totalComparisons += comparisons;
             comparisons = 0;
-            result += "\n" + (i+1) + ": target word: " + targetArray[i] + " and the number of comparisons is: " + binary(magicItems, 0, magicItems.length, targetArray[i]);
+            result += "\n" + (i+1) + ": target word: " + targetArray[i] + " which was found at index:  " + binary(magicItems, 0, magicItems.length, targetArray[i]) + " and the number of comparisons is: " + comparisons;
         }
         double average = ((double)(totalComparisons))/targetArray.length; // dobule for decimal places
         result += "\n Average: =" + String.format("%.2f", average); // Labeling average

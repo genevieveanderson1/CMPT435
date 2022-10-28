@@ -21,13 +21,14 @@ public class Main {
             e.printStackTrace();
         }
 
+        // Sorting the magic items
         Quick quick = new Quick(magicItems);
-
         quick.quick(magicItems, 0, magicItems.length - 1);
 
-        // Sort the same 42 items from linear and binary to compare the two searches to each other
+        // Sort the same 42 items for each search and setting them to target array
         String[] targetArray = new String[42]; // String array with 42 items
 
+        // Actually getting 42 random values
         for (int i = 0; i < targetArray.length; i++) {
             Random random = new Random();
             int randInt = random.nextInt(magicItems.length); // idk if this is choosing repeats - is that okay?
@@ -35,14 +36,18 @@ public class Main {
             // System.out.println(targetArray[i]); Printing the value that will be searched
         }
 
+        // linear search
         Linear linear = new Linear(magicItems, targetArray);
         System.out.println(linear);
         // Notice that some comparisons are much higher than others
         // The phrases that start with "A" have much smaller number of comparisons since we alphabetically sorted the list prior to searching
 
-        quick.quick(magicItems, 0, magicItems.length - 1);
-
+        // Binary search
         BinarySearch binary = new BinarySearch(magicItems, targetArray);
         System.out.println(binary);
+
+        // Hashing
+        Hash hash = new Hash(magicItems, targetArray);
+        System.out.println(hash);
     }
 }
