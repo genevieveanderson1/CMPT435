@@ -19,13 +19,12 @@ public class BinarySearch {
 
     // Function for Binary Search
     public int binary(String [] A, int start, int stop, String target) {
-        int midPoint = (start+stop)/2; // Finding the midpoint - Alan said to do floor
+        int midPoint = (start+stop)/2; // Finding the midpoint
         comparisons++; // Counting comparisons here 
         if (start > stop) {
             return -1; // This is so that we know the target was no found because negative indexes dont exist in arrays
         }
         else if (target.equals(A[midPoint])) {
-            // Should I return comparisons here or midpoint?
             return midPoint; // midPoint is the index of what we are searching for
         }
         else if (target.compareTo(A[midPoint])<0) {

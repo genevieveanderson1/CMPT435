@@ -13,7 +13,7 @@ public class Main {
         int hospCap = 0;
 
         try { //Trying to find the file
-            File file = new File("data.txt");
+            File file = new File("final-project-data.txt");
             Scanner sc = new Scanner(file);
 
             while (sc.hasNextLine()) {
@@ -30,16 +30,18 @@ public class Main {
                         res.setPref(hospPref); 
                     }
                 }
-                else {
-                    Node hosp = new Node(item.substring(0,item.indexOf('(')-1), null); // putting h1,...,h5 each in their own node
+                else if (item.startsWith("h")) {
+                    int capacity = Integer.parseInt(item.substring(item.indexOf(':')+2, item.indexOf(':')+3)); // For figuring out what the capacity is for each hospital, converting string into an integer
+                    Node hosp = new Node(item.substring(0,item.indexOf(':')), null, capacity); // putting h1,...,h5 each in their own node
                     hospitals[hospCap++] = hosp; 
-                    item = item.substring(item.indexOf(':')+2); // Go from everything after the colon/ space
+                    item = item.substring(item.indexOf('-')+2); // Go from everything after the colon/ space
                     String[] temp = item.split(" "); // String array of the hospitals resident preferences
                     for (int i = 0; i<temp.length; i++) { // We are adding each hospital's resident preferences to each hospital node
                         Node resPref = new Node(temp[i], null);
                         hosp.setPref(resPref); 
                     }
                 }
+
             }
         }
         catch (FileNotFoundException e) { //If we cant find the file

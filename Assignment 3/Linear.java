@@ -6,22 +6,22 @@ public class Linear {
     // Constructor
     public Linear(String[] magicItems, String[] targetArray) {
         this.magicItems = magicItems;
-        this.targetArray = targetArray;
-        comparisons = 0;
+        this.targetArray = targetArray; // 42 items
+        comparisons = 0; // Initialize comparisons
     }
 
     // Function for linear search
     public int linear(String target) {
-        for (int j = 0; j < magicItems.length; j++) {
+        for (int j = 0; j < magicItems.length; j++) { // Loop through all the magic items
             if (target.equals(magicItems[j])) {
-                j = magicItems.length; // So we don't use a break statement - this ends the loop - setting j equal to the magic items length will stop the loop because the loop goes while j is less than the magic items length
+                j = magicItems.length; // Ends loop without break statement - the loop goes while j is less than the magic items length
             }
             comparisons++;
         }
         return comparisons;
     }
 
-    //Function for toString 
+    // Function for toString 
     public String toString() {
         String result = ""; // Initializing result variable as empty
         int totalComparisons = 0;
@@ -30,7 +30,7 @@ public class Linear {
             comparisons = 0;
             result += "\n" + (i+1) + ": target word: " + targetArray[i] + " and the number of comparisons is: " + linear(targetArray[i]);
         }
-        double average = ((double)(totalComparisons))/targetArray.length; // dobule for decimal places
+        double average = ((double)(totalComparisons))/targetArray.length; // Dobule for decimal places
         result += "\n Average: =" + String.format("%.2f", average); // Labeling average
         return result;
     }

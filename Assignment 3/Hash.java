@@ -1,5 +1,10 @@
 import java.util.Arrays;
 
+// hash all 250
+// search for 42 
+// comparisons for collisons + 1 for has 
+// average should be over 3
+
 public class Hash {
 
     private final int HASH_TABLE_SIZE = 250;
@@ -12,7 +17,7 @@ public class Hash {
     // Constructor
     public Hash(String[] magicItems, String[] targetArray) {
         this.magicItems = magicItems;
-        this.targetArray = targetArray; // List of 42 items
+        this.targetArray = targetArray; // 42 items
         comparisons = 1; // it always starts at 1 because we always do at least one comparison
         populate(); // Actually populating the hash table
     }
@@ -62,17 +67,9 @@ public class Hash {
            char thisLetter = str.charAt(i);
            int thisValue = (int)thisLetter;
            letterTotal = letterTotal + thisValue;
-           // Test: print the char and the hash.
-           /*
-           System.out.print(" [");
-           System.out.print(thisLetter);
-           System.out.print(thisValue);
-           System.out.print("] ");
-           // */
         }
         // Scale letterTotal to fit in HASH_TABLE_SIZE.
         int hashCode = (letterTotal * 1) % HASH_TABLE_SIZE;  // % is the "mod" operator
-        // TODO: Experiment with letterTotal * 2, 3, 5, 50, etc.
   
         return hashCode;
     }
@@ -83,7 +80,7 @@ public class Hash {
         int totalComparisons = 0;
         for (int i = 0; i < targetArray.length; i++) { // Beginning at 0; go until the end of target array; increment by 1
             totalComparisons += comparisons;
-            comparisons = 0;
+            comparisons = 1; // Because every get is one compare
             result += "\n" + (i+1) + ": target word: " + targetArray[i] + " which was found at index:  " + find(targetArray[i]) + " and the number of comparisons is: " + comparisons;
         }
         double average = ((double)(totalComparisons))/targetArray.length; // dobule for decimal places

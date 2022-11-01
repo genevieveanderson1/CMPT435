@@ -4,6 +4,8 @@ public class Node {
     String name;
     Node next;
     ArrayList<Node> preferences; // array list that holds nodes, this is good because we dont need to know the sized
+    int capacity; 
+    boolean free;
     //This is the class that builds the framework for the linekd list
     //Building the framework for each node. the linked list is going to be made up of several nodes.
     //Node constructor
@@ -13,6 +15,29 @@ public class Node {
         this.name = n; //Initializing the name
         this.next = null; //Initializing the pointer
         preferences = new ArrayList<Node>();
+        capacity = -1; // -1 for when we are dealing with residents since they dont have a capacity
+        free = true; // always free to begin with 
+    }
+
+    // Constructor for when we want to make a hospital node
+    public Node(String n, Node node, int capacity) { //The first parameter is for the information the node is holding, the second parameter is for the pointer
+        this.name = n; //Initializing the name
+        this.next = null; //Initializing the pointer
+        preferences = new ArrayList<Node>();
+        this.capacity = capacity; // the hospitals have a capacity requirement so that must be considered here
+        free = true; // always free to begin with 
+    }
+
+    public int getSize() {
+        return preferences.size(); // gets the size of the array list
+    }
+
+    public boolean isFree() {
+        return free;
+    }
+
+    public int getCapacity() { //Getting the capacity from the node, returns an int
+        return capacity; // Returns what the capacity is
     }
 
     //I will now build two getters: information for the node, information for the pointer
