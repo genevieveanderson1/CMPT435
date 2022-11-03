@@ -10,13 +10,6 @@ public class BinarySearch {
         comparisons = 0;
     }
 
-    // need to know the index of the value being searched
-    // If it is found, where is it?
-    // binary search return int that is the index of the array where the target was found
-    // dont modify the array
-    // only modify the index of where we start and stop
-
-
     // Function for Binary Search
     public int binary(String [] A, int start, int stop, String target) {
         int midPoint = (start+stop)/2; // Finding the midpoint
@@ -30,7 +23,7 @@ public class BinarySearch {
         else if (target.compareTo(A[midPoint])<0) {
             return binary(A, start, midPoint, target); // Recursion for the first half of the array
         }
-        else { // It wasnt the other scenarios so the target must be larger than the midpoint or not there at all - right?
+        else { // It wasnt the other scenarios so the target must be larger than the midpoint or not there at all
             return binary(A, midPoint + 1, stop, target); // Recursion for the second half of the array
         }
     }

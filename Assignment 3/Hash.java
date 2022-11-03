@@ -42,15 +42,14 @@ public class Hash {
     public int find(String target) {
         int hash = makeHashCode(target); // Getting the index of where the target should be inside the hash table
         Node currentNode = hashTable[hash];
-        if (target.equals(currentNode.getName())) { // Seeing if the target is equal to the current node at the hash index
-            comparisons++;  
-        }
-        else { 
-            while (currentNode != null && !currentNode.getName().equals(target)) { // while the current node is not null and does not equal the target value
-                comparisons++;
-                currentNode = currentNode.getNext(); // Getting the next item from the chain
-            } 
-        }
+        comparisons++;
+        /*if (target.equals(currentNode.getName())) { // Seeing if the target is equal to the current node at the hash index
+            comparisons++; // move this above the if statement - get rid of the if statement 
+        }*/
+        while (currentNode != null && !currentNode.getName().equals(target)) { // while the current node is not null and does not equal the target value
+            comparisons++;
+            currentNode = currentNode.getNext(); // Getting the next item from the chain
+        } 
         if (currentNode == null) {
             hash = -1; // Negative number becuase we know there isnt a negative index
         }
