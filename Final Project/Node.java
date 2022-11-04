@@ -6,6 +6,7 @@ public class Node {
     ArrayList<Node> preferences; // array list that holds nodes, this is good because we dont need to know the sized
     int capacity; 
     boolean free;
+    ArrayList<Node> subscribed; // This is for the hospitals subscribed list after r proposes
     //This is the class that builds the framework for the linekd list
     //Building the framework for each node. the linked list is going to be made up of several nodes.
     //Node constructor
@@ -17,6 +18,8 @@ public class Node {
         preferences = new ArrayList<Node>();
         capacity = -1; // -1 for when we are dealing with residents since they dont have a capacity
         free = true; // always free to begin with 
+        subscribed = new ArrayList<Node>();
+
     }
 
     // Constructor for when we want to make a hospital node
@@ -26,6 +29,7 @@ public class Node {
         preferences = new ArrayList<Node>();
         this.capacity = capacity; // the hospitals have a capacity requirement so that must be considered here
         free = true; // always free to begin with 
+        subscribed = new ArrayList<Node>();
     }
 
     public int getSize() {
@@ -47,6 +51,10 @@ public class Node {
 
     public ArrayList<Node> getPref() { //Returning a node
         return preferences; //Next because we are calling the pointer next, returns the node from the variable next
+    }
+
+    public ArrayList<Node> getSubscribed() { //Getting the subscribed list from the node, returns an array list
+        return subscribed; // Returns what the subscribed list is
     }
 
     //I will now build two setters: setting the name, and setting the pointer

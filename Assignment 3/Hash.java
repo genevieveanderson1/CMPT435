@@ -1,10 +1,5 @@
 import java.util.Arrays;
 
-// hash all 250
-// search for 42 
-// comparisons for collisons + 1 for has 
-// average should be over 3
-
 public class Hash {
 
     private final int HASH_TABLE_SIZE = 250;
@@ -18,14 +13,15 @@ public class Hash {
     public Hash(String[] magicItems, String[] targetArray) {
         this.magicItems = magicItems;
         this.targetArray = targetArray; // 42 items
-        comparisons = 1; // it always starts at 1 because we always do at least one comparison
+        comparisons = 1; // Because we always do at least one comparison
         populate(); // Actually populating the hash table
     }
 
+    // Function for populating the hash table
     public void populate() {
         for (int i = 0; i < magicItems.length; i++) {
             int hash = makeHashCode(magicItems[i]); // Finding a number from 0 to 250 for where to put the magic item in the hash table
-            Node hashNode = new Node(magicItems[i], null); // putting the magic items in node with null pointer
+            Node hashNode = new Node(magicItems[i], null); // Putting the magic items in node with null pointer
             Node currentNode = hashTable[hash]; // hash is the current spot that we are looking at
             if (currentNode == null) {
                 hashTable[hash] = hashNode; // The node with the magic item - actually putting the magic items in the hash table
@@ -39,28 +35,25 @@ public class Hash {
         }
     }
 
+    // Function for finding the target value
     public int find(String target) {
         int hash = makeHashCode(target); // Getting the index of where the target should be inside the hash table
         Node currentNode = hashTable[hash];
         comparisons++;
-        /*if (target.equals(currentNode.getName())) { // Seeing if the target is equal to the current node at the hash index
-            comparisons++; // move this above the if statement - get rid of the if statement 
-        }*/
-        while (currentNode != null && !currentNode.getName().equals(target)) { // while the current node is not null and does not equal the target value
+        while (currentNode != null && !currentNode.getName().equals(target)) { // While the current node is not null and does not equal the target value
             comparisons++;
             currentNode = currentNode.getNext(); // Getting the next item from the chain
         } 
         if (currentNode == null) {
             hash = -1; // Negative number becuase we know there isnt a negative index
         }
-        return hash; // reutrning the index where the target is 
+        return hash; // Reutrning the index where the target is 
     }
 
     public int makeHashCode(String str) {
         str = str.toUpperCase();
         int length = str.length();
         int letterTotal = 0;
-  
         // Iterate over all letters in the string, totalling their ASCII values.
         for (int i = 0; i < length; i++) {
            char thisLetter = str.charAt(i);
@@ -69,7 +62,6 @@ public class Hash {
         }
         // Scale letterTotal to fit in HASH_TABLE_SIZE.
         int hashCode = (letterTotal * 1) % HASH_TABLE_SIZE;  // % is the "mod" operator
-  
         return hashCode;
     }
 
