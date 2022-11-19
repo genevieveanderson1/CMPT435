@@ -31,12 +31,12 @@ public class BST {
         }
         // Determines which side of tree to place node, will compare the value we are trying to insert to the "current" node
         if (value.compareTo(node.getName()) < 0) { // Less than "current" node
-            node.left = insert(node.left, value); 
-            path += "L ";
-            comparisons++;
+            node.left = insert(node.left, value); // Recursively inserts node on the left
+            path += "L, "; // Used when printing path of insertion
+            comparisons++; // Increment comparisons
         } else { // Greater than "current" node
-            node.right = insert(node.right, value);
-            path += "R ";
+            node.right = insert(node.right, value); // Recursively inserts node on the right
+            path += "R, ";
             comparisons++;
         }
         return node;
@@ -44,16 +44,16 @@ public class BST {
 
     // Function for finding nodes in the tree
     public Node find(Node node, String target) {
-        findComparisons++;
-        if (target.equals(node.getName())) { 
+        findComparisons++; // Increment comparisons for find, different variable than comparisons for insert 
+        if (target.equals(node.getName())) { // When the node has been found
             return node;
         }
         else if (target.compareTo(node.getName()) < 0) { // Searching left hand side of tree
-            findPath += "L ";
-            find(node.getLeft(), target);
+            findPath += "L, "; // Used when printing path of search
+            find(node.getLeft(), target); // Recursively finding the node on the left
         }
         else { // Searching right hand side
-            findPath += "R ";
+            findPath += "R, ";
             find(node.getRight(), target);
         }
         return null; // If the target is not found
@@ -91,4 +91,6 @@ public class BST {
         System.out.println(node.getName());
         ITW(node.right);
     }
+
+
 }

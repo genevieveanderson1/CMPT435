@@ -32,13 +32,13 @@ public class Graph {
         for (int r = 0; r < matrix.length; r++) {
             for (int c = 0; c < matrix.length; c++) {
                 if (r == 0 && c != 0) {
-                    matrix[r][c] = c; // for making the list of numbers at the top for formatting
+                    matrix[r][c] = c; // For making the list of numbers at the top for formatting
                 }
                 else if (c == 0 && r!= 0) {
-                    matrix[r][c] = r; // for making the list of numbers at the side for formatting
+                    matrix[r][c] = r; // For making the list of numbers at the side for formatting
                 }
                 else if (c != 0 && r != 0) { // Inside the matrix
-                    boolean edge = vertexList.get(r - 1).haveEdge(c); // at each point in the matrix going through to see if it has an edge
+                    boolean edge = vertexList.get(r - 1).haveEdge(c); // At each point in the matrix going through to see if it has an edge
                     if (edge == true) {
                         matrix[r][c] = 1; // If there is an edge the matrix point will be set to 1
                     }
@@ -48,17 +48,6 @@ public class Graph {
                 } 
             }
         }
-    }
-
-    public void printResults() {
-        for (int r = 0; r < matrix[0].length; r++) {
-            System.out.print("[");
-            for (int c = 0; c < matrix[0].length; c++) {
-                System.out.print(matrix[r][c] + ", ");
-            }
-            System.out.println("]"); // For each line of the matrix
-        }
-        System.out.println(adjList()); // Printing the adjacency list
     }
 
     // Function for adjacency list
@@ -71,13 +60,25 @@ public class Graph {
         return result; 
     }
 
+    // Function for printing the results of the graph
+    public void printResults() {
+        for (int r = 0; r < matrix[0].length; r++) {
+            System.out.print("[");
+            for (int c = 0; c < matrix[0].length; c++) {
+                System.out.print(matrix[r][c] + ", ");
+            }
+            System.out.println("]"); // For each line of the matrix
+        }
+        System.out.println(adjList()); // Printing the adjacency list
+    }
+
     // Function for depth first traversal
     public void DFS(Vertex v) {
         if (v.processed == false) {
             System.out.println(v.getVertexByID());
             v.processed = true;
         }
-        for (Vertex n: vertexList) { // for all the vertexes in the vertex list 
+        for (Vertex n: vertexList) { // For all the vertices in the vertex list 
             if (n.processed == false) {
                 DFS(n);
             }

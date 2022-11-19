@@ -61,6 +61,7 @@ public class Vertex {
         return neighbors;
     }
 
+    // toString for printing results
     public String toString() {
         return id + ""; // Converting the value being stored to a string so that the adjList can be printed and formatted correctly
     }

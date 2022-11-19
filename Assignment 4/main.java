@@ -7,7 +7,7 @@ import java.util.*;
 public class main {
     public static void main(String[] args) {
         // BST code
-        /*String[] magicItems = new String[666]; 
+        String[] magicItems = new String[666]; 
         try { //Trying to find the file
             File file = new File("magicitems.txt");
             Scanner sc = new Scanner(file);
@@ -37,6 +37,7 @@ public class main {
         catch (FileNotFoundException e) { // If we cant find the file
             e.printStackTrace();
         }
+
         BST tree = new BST();
         tree.setRoot(magicItems[0]); // We can do this because the first magic item will always be the root
         for (int i = 0; i < magicItems.length; i++) {
@@ -52,8 +53,6 @@ public class main {
         tree.average(tree.findTotalComparisons, magicItemsFind.length);
         tree.ITW(tree.root);
 
-*/
-
         // Graph codes now
         ArrayList<Vertex> vertices = new ArrayList<Vertex>(); // vertices that will be provided to the graph 
 
@@ -66,7 +65,7 @@ public class main {
                 String[] parse = item.split(" ");
                 if (parse[0].equals("add") && parse[1].equals("vertex")) {
                     Vertex v = new Vertex(Integer.parseInt(parse[2])); // Getting the vertex number and creating a new vertex based off of it
-                    vertices.add(v); // adding the vertex to the array list of all the vertices
+                    vertices.add(v); // Adding the vertex to the array list of all the vertices
                 }
                 else if (parse[0].equals("add") && parse[1].equals("edge")) {
                     int firstVertex = Integer.parseInt(parse[2]); // First vertex the edge will be connected to 
@@ -83,17 +82,17 @@ public class main {
                 else if (parse[0].equals("new") && parse[1].equals("graph")) {   
                     Graph graph = new Graph();
                     graph.setGraph(vertices);
-                    graph.matrix();
-                    graph.adjList();
-                    graph.printResults();
-                    if (vertices.isEmpty() ==  false) {
+                    graph.matrix(); // Matrix
+                    graph.adjList(); // Adjacency list
+                    graph.printResults(); // Results
+                    if (vertices.isEmpty() ==  false) { // Traversals
                         System.out.println("-------------------------------------Below is the depth first traversal-------------------------------------");
                         graph.DFS(vertices.get(0));
-                        graph.resetTraversal();
+                        graph.resetTraversal(); // Resetting traversal
                         System.out.println("-------------------------------------Below is the breadth first traversal-------------------------------------");
                         graph.BFS(vertices.get(0));
                     } 
-                    vertices.clear();
+                    vertices.clear(); // So that the graphs aren't added on top of each other
                 }
             }
             // For the last graph
