@@ -13,7 +13,6 @@ public class main {
         try { //Trying to find the file
             File file = new File("graphs2.txt");
             Scanner sc = new Scanner(file);
-
             while (sc.hasNextLine()) {
                 String item = sc.nextLine(); 
                 String[] parse = item.split(" ");
@@ -24,7 +23,7 @@ public class main {
                 else if (parse[0].equals("add") && parse[1].equals("edge")) {
                     int firstVertex = Integer.parseInt(parse[2]); // First vertex the edge will be connected to 
                     int secondVertex = Integer.parseInt(parse[4]); // Second vertex the edge will be connected to
-                    int weight = 0;
+                    int weight = 0; // Initialize weight
                     if (parse[5].equals("")) {
                         weight = Integer.parseInt(parse[6]); // Weight of the edge
                     }
@@ -39,7 +38,7 @@ public class main {
                     else {
                         Edge e = new Edge(vertices.get(firstVertex - 1), vertices.get(secondVertex - 1), weight);
                         edges.add(e);
-                        vertices.get(firstVertex).add(e);
+                        vertices.get(firstVertex - 1).add(e); 
                     }
                 }
                 else if (parse[0].equals("new") && parse[1].equals("graph")) {   
