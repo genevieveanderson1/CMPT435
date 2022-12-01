@@ -7,10 +7,12 @@ import java.util.*;
 public class main {
     public static void main(String[] args) {
 
+        // dynamic programming
+
         ArrayList<Vertex> vertices = new ArrayList<Vertex>(); // vertices that will be provided to the graph 
         ArrayList<Edge> edges = new ArrayList<Edge>(); 
 
-        try { //Trying to find the file
+        /*try { //Trying to find the file
             File file = new File("graphs2.txt");
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
@@ -41,19 +43,64 @@ public class main {
                         vertices.get(firstVertex - 1).add(e); 
                     }
                 }
-                else if (parse[0].equals("new") && parse[1].equals("graph")) {   
+                else if (parse[0].equals("new") && parse[1].equals("graph") && vertices.size() > 0) {   
                     Graph graph = new Graph();
                     graph.setGraph(vertices, edges);
                     graph.shortest();
+                    System.out.println("------------new graph--------------");
                     printResults(vertices, graph); // Results
                     vertices.clear(); // So that the graphs aren't added on top of each other
+                    edges.clear();
                 }
             }
-            /* For the last graph
             Graph graph = new Graph();
-            graph.setGraph(vertices);
-            graph.printResults();
-            vertices.clear();   */
+            graph.setGraph(vertices, edges);
+            graph.shortest();
+            System.out.println("------------new graph--------------");
+            printResults(vertices, graph); // Results
+            vertices.clear(); // So that the graphs aren't added on top of each other
+            edges.clear();
+        }
+        catch (FileNotFoundException e) { // If we cant find the file
+            e.printStackTrace();
+        }*/
+
+        // spices 
+
+        ArrayList<Spice> spices = new ArrayList<Spice>(); // to hold all the spices
+
+        try { //Trying to find the file
+            File file = new File("spice.txt");
+            Scanner sc = new Scanner(file);
+
+            while (sc.hasNextLine()) {
+                String item = sc.nextLine(); 
+                if (item.startsWith("s")) {
+                    String[] parse = item.split(";");
+                    String[] color = parse[0].split(" ");
+                    String[] totalPrice = parse[1].split(" ");
+                    String[] quantity = parse[2].split(" ");
+                    String c = color[color.length-1];
+                    double tP = Double.parseDouble(totalPrice[totalPrice.length-1]);
+                    int q = Integer.parseInt(quantity[quantity.length -1]);
+
+                    Spice s = new Spice(c, tP, q);
+                    if (spices.size() == 0) {
+                        spices.add(s); // adding spices to the array list
+                    }
+                    else if (spices.get(0).unitPrice > s.unitPrice) {
+                        spices.add(s); // since it is greater than the greatest spice in the list, it should be added in the beginning
+                    }
+                    else {
+                        spices.add(0,s); 
+                    }
+                }
+                else if (item.startsWith("k")) {
+                    String[] parse = item.split(" ");
+                    int cap = Integer.parseInt(parse[parse.length-1].substring(0,parse[parse.length-1].length()-1)); // parsing to get the knapsack number
+                    System.out.println(Arrays.toString(spices.toArray()));
+                }
+            }
         }
         catch (FileNotFoundException e) { // If we cant find the file
             e.printStackTrace();
@@ -62,7 +109,11 @@ public class main {
 
     public static void printResults(ArrayList<Vertex> vertices, Graph g) {
         for (int i = 1; i < vertices.size(); i ++) {
-            System.out.println("1 -> " + vertices.get(i) + " cost is " + vertices.get(i).getValue() + "; path is" + g.path(vertices.get(i)));
+            System.out.println("1 -> " + vertices.get(i) + " cost is " + vertices.get(i).getValue() + "; path is " + g.path(vertices.get(i)));
         }
+    }
+
+    public static void greedy(int cap, ArrayList<Spice> spices) {
+        
     }
 }

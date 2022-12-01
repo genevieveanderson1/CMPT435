@@ -5,7 +5,7 @@ public class Vertex {
     int id;
     ArrayList<Edge> neighbors;
     Vertex predecessor;
-    int value; // Starts at infinity
+    double value; // Starts at infinity
 
 
     // Constructor
@@ -14,7 +14,7 @@ public class Vertex {
         processed = false;
         neighbors = new ArrayList<Edge>();
         predecessor = null;
-        value = Integer.MAX_VALUE;
+        value = Double.POSITIVE_INFINITY;
     }
 
     // Parameterized Constructor, if we need to make a vertex with the provided id 
@@ -23,7 +23,12 @@ public class Vertex {
         processed = false;
         neighbors = new ArrayList<Edge>();
         predecessor = null;
-        value = Integer.MAX_VALUE;
+        if (id == 1) {
+            value = 0;
+        }
+        else {
+            value = Double.POSITIVE_INFINITY;
+        }
     }
 
     // Function for adding edge to vertex 
@@ -40,11 +45,11 @@ public class Vertex {
         return predecessor; //Next because we are calling the pointer next, returns the node from the variable next
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int n) {
+    public void setValue(double n) {
         value = n;
     }
 

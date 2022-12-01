@@ -31,11 +31,10 @@ public class Graph {
         matrix = new int[vertexList.size() + 1][vertexList.size() + 1];
     }
 
-    // Function for finding the shortest path
+    // Function for finding the shortest path - bellman ford algorithm
     public boolean shortest() {
-        boolean check = false;
-        for (int i =0; i < vertexList.size(); i++) {
-            for (Edge e: vertexList.get(i).neighbors()) {
+        for (int i =0; i < vertexList.size() ; i++) {
+            for (Edge e: edgeList) {
                 relax(e); // e contains first and second vertex along with weight
             }
         }
@@ -68,4 +67,3 @@ public class Graph {
         return path;
     }
 }
-
