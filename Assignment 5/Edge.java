@@ -1,10 +1,9 @@
-import javax.swing.text.View;
-
 public class Edge {
     Vertex v1;
     Vertex v2;
     int weight;
 
+    // Constructor
     public Edge() {
         v1 = null;
         v2 = null;

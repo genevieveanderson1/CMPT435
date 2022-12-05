@@ -76,14 +76,18 @@ public class main {
             while (sc.hasNextLine()) {
                 String item = sc.nextLine(); 
                 if (item.startsWith("s")) {
+                    // Parsing the spice file
                     String[] parse = item.split(";");
                     String[] color = parse[0].split(" ");
                     String[] totalPrice = parse[1].split(" ");
                     String[] quantity = parse[2].split(" ");
+
+                    // Setting the variables to their values
                     String c = color[color.length-1];
                     double tP = Double.parseDouble(totalPrice[totalPrice.length-1]);
                     int q = Integer.parseInt(quantity[quantity.length -1]);
 
+                    // Adding spices to the array list of spices
                     Spice s = new Spice(c, tP, q);
                     if (spices.size() == 0) {
                         spices.add(s); // adding spices to the array list
@@ -97,8 +101,10 @@ public class main {
                 }
                 else if (item.startsWith("k")) {
                     String[] parse = item.split(" ");
-                    int cap = Integer.parseInt(parse[parse.length-1].substring(0,parse[parse.length-1].length()-1)); // parsing to get the knapsack number
-                    System.out.println(Arrays.toString(spices.toArray()));
+                    int cap = Integer.parseInt(parse[parse.length-1].substring(0,parse[parse.length-1].length()-1)); // parsing to get the knapsack capacity
+                    ArrayList<Spice> copy = (ArrayList<Spice>)spices.clone();
+                    System.out.println(greedy(cap, copy)); // Algorithm
+                    // Need to update quantity without messing with anything else   
                 }
             }
         }
@@ -113,7 +119,26 @@ public class main {
         }
     }
 
-    public static void greedy(int cap, ArrayList<Spice> spices) {
-        
+    public static String greedy(int cap, ArrayList<Spice> spices) {
+        String result = "knapsack of capacity " + cap + " is worth ";
+        int current = 0; // For tracking the current spice
+        int total = 0;
+        int scoops = 0;
+        String scoopString = "";
+        for (int i = 0; i < cap; i++) { // Fill the knapsack til it reaches it's capacity
+            // Scooping the spices
+            Spice currentSpice = spices.get(current); 
+            total += currentSpice.unitPrice; 
+            scoops++; 
+            if (currentSpice.quantity == 0 || i+1 == cap) {
+                current++; 
+                scoopString += scoops + " scoop of " + currentSpice.color + ", ";
+                scoops = 0; // Re setting the scoops
+            }
+            currentSpice.quantity--; // Subtracting the spice
+            System.out.println(currentSpice.quantity);
+        }
+        result += total + " quatloos and contains " + scoopString.substring(0, scoopString.length() -2 ) + ".";
+        return result;
     }
 }

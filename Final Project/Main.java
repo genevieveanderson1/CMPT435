@@ -49,13 +49,18 @@ public class Main {
         }
 
         // testing to see if my linked lists are good
-        for (int i = 0; i<residents.length; i++) {
+        /*for (int i = 0; i<residents.length; i++) {
             System.out.println(residents[i]);
         }
         for (int i = 0; i<hospitals.length; i++) {
             System.out.println(hospitals[i]);
-        }
+        }*/
 
+        matching match = new matching(residents, hospitals);
+        match.assign();
+        for (int i = 0; i<residents.length; i++) {
+            System.out.println(residents[i]);
+        }
 
     }
 }
