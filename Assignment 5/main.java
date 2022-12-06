@@ -102,8 +102,8 @@ public class main {
                 else if (item.startsWith("k")) {
                     String[] parse = item.split(" ");
                     int cap = Integer.parseInt(parse[parse.length-1].substring(0,parse[parse.length-1].length()-1)); // parsing to get the knapsack capacity
-                    ArrayList<Spice> copy = (ArrayList<Spice>)spices.clone();
-                    System.out.println(greedy(cap, copy)); // Algorithm
+                    
+                    System.out.println(greedy(cap, spices)); // Algorithm
                     // Need to update quantity without messing with anything else   
                 }
             }
@@ -127,18 +127,21 @@ public class main {
         String scoopString = "";
         for (int i = 0; i < cap; i++) { // Fill the knapsack til it reaches it's capacity
             // Scooping the spices
-            Spice currentSpice = spices.get(current); 
-            total += currentSpice.unitPrice; 
-            scoops++; 
-            if (currentSpice.quantity == 0 || i+1 == cap) {
-                current++; 
-                scoopString += scoops + " scoop of " + currentSpice.color + ", ";
-                scoops = 0; // Re setting the scoops
+            if (current < spices.size()) {
+                Spice currentSpice = spices.get(current);
+                total += currentSpice.unitPrice; 
+                scoops++; 
+    
+                if (currentSpice.quantity == scoops || i + 1 == cap) {
+                    current++; 
+                    scoopString += scoops + " scoop of " + currentSpice.color + ", ";
+                    scoops = 0; // Re setting the scoops
+                }
+            } else {
+                break;
             }
-            currentSpice.quantity--; // Subtracting the spice
-            System.out.println(currentSpice.quantity);
         }
-        result += total + " quatloos and contains " + scoopString.substring(0, scoopString.length() -2 ) + ".";
+        result += total + " quatloos and contains " + scoopString.substring(0, scoopString.length() - 2) + ".";
         return result;
     }
 }
