@@ -19,9 +19,4 @@ public class Spice {
         this.quantity = quantity;
         unitPrice = totalPrice/quantity;
     }
-
-    public String toString() {
-        String result = "color: " + color + " total price: " + totalPrice + " quantity: " + quantity + " unit price: " + unitPrice;
-        return result;
-    }
 }

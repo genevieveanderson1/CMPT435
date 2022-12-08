@@ -36,13 +36,8 @@ public class Vertex {
         neighbors.add(e);
     }
 
-    // Function for changing processed
-    public void isProcessed() {
-        processed = true;
-    } 
-
-    public Vertex getPredecessor() { //Returning a node
-        return predecessor; //Next because we are calling the pointer next, returns the node from the variable next
+    public Vertex getPredecessor() { 
+        return predecessor; 
     }
 
     public double getValue() {
@@ -53,8 +48,8 @@ public class Vertex {
         value = n;
     }
 
-    public void setPredecessor(Vertex m) { //"m" is the node that we are going to set next equal to, for the pointer
-        predecessor = m; //I am using m so that the pointer is not null. the pointer will not be null until the end of the linked list.
+    public void setPredecessor(Vertex m) { // "m" is the node that we are going to set next equal to, for the pointer
+        predecessor = m; // I am using m so that the pointer is not null. the pointer will not be null until the end of the linked list.
     }
 
     // Function for getting the id
@@ -71,6 +66,4 @@ public class Vertex {
     public String toString() {
         return id + ""; // Converting the value being stored to a string so that the adjList can be printed and formatted correctly
     }
-
-
 }

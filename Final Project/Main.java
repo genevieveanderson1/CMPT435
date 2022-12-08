@@ -3,64 +3,65 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.*;
-
+import java.util.ArrayList;
 
 public class Main {
     public static void main (String[] args) {  
-        Node[] residents = new Node[11]; // 11 residents
-        Node[] hospitals = new Node[5]; // 5 hospitals
-        int resCap = 0; // initializing to 0
-        int hospCap = 0;
+        ArrayList<Resident> residents = new ArrayList<Resident>(); 
+        ArrayList<Hospital> hospitals = new ArrayList<Hospital>(); 
+
 
         try { //Trying to find the file
             File file = new File("final-project-data.txt");
             Scanner sc = new Scanner(file);
 
+
             while (sc.hasNextLine()) {
                 String item = sc.nextLine();
+
+
                 if (item.startsWith("r")) {
                     // index of will find where the colon is in each string - its in different spots each time because sometimes there are double digits
-                    Node res = new Node(item.substring(0,item.indexOf(':')), null); // putting r1,...,r11 each in their own node
-                    residents[resCap++] = res; 
-                    item = item.substring(item.indexOf(':')+2); // Go from everything after the colon/ space
-                    
-                    String[] temp = item.split(" "); // String array of the residents preferences
-                    for (int i = 0; i<temp.length; i++) { // We are adding each residents hospital preferences to each residents node
-                        Node hospPref = new Node(temp[i], null);
-                        res.setPref(hospPref); 
+                    int id = Integer.parseInt(item.substring(1,item.indexOf(':'))); // putting r1,...,r11 each in their own resident object
+                    String[] resHospPref = null;
+                    if (id > 9) {
+                        resHospPref = item.substring(5).split(" "); // putting the hospital preferences of the resident into a string array
                     }
-                }
-                else if (item.startsWith("h")) {
-                    int capacity = Integer.parseInt(item.substring(item.indexOf(':')+2, item.indexOf(':')+3)); // For figuring out what the capacity is for each hospital, converting string into an integer
-                    Node hosp = new Node(item.substring(0,item.indexOf(':')), null, capacity); // putting h1,...,h5 each in their own node
-                    hospitals[hospCap++] = hosp; 
-                    item = item.substring(item.indexOf('-')+2); // Go from everything after the colon/ space
-                    String[] temp = item.split(" "); // String array of the hospitals resident preferences
-                    for (int i = 0; i<temp.length; i++) { // We are adding each hospital's resident preferences to each hospital node
-                        Node resPref = new Node(temp[i], null);
-                        hosp.setPref(resPref); 
-                    }
+                    else {
+                        resHospPref = item.substring(4).split(" "); // putting the hospital preferences of the resident into a string array
+                    } 
+                    ArrayList<String> arrayResHospPref= new ArrayList<String>(); 
+                    Collections.addAll(arrayResHospPref, resHospPref); // putting as an array list
+                    Resident res = new Resident(id, arrayResHospPref); // creating the instance of a resident
+                    residents.add(res); // adding each instance of a resident to the array list which holds all residents
                 }
 
+
+                else if (item.startsWith("h")) {
+                    int capacity = Integer.parseInt(item.substring(item.indexOf(':')+2, item.indexOf(':')+3)); // For figuring out what the capacity is for each hospital
+                    int id = Integer.parseInt(item.substring(1,item.indexOf(':'))); // Figuring out hospital id
+                    String[] hospResPref = item.substring(item.indexOf('-')+2).split(" "); // putting each hospital in its own object
+                    ArrayList<String> arrayHospResPref = new ArrayList<String>();
+                    Collections.addAll(arrayHospResPref, hospResPref);
+                    Hospital hosp = new Hospital(id, arrayHospResPref, capacity); // Adding each instance of a hospital to the array list which holds all hospitals
+                    hospitals.add(hosp);
+                }
             }
         }
         catch (FileNotFoundException e) { //If we cant find the file
             e.printStackTrace();
         }
 
-        // testing to see if my linked lists are good
-        /*for (int i = 0; i<residents.length; i++) {
-            System.out.println(residents[i]);
+        // testing lists
+        /*for (int i = 0; i<residents.size(); i++) {
+            System.out.println(residents.get(i));
         }
-        for (int i = 0; i<hospitals.length; i++) {
-            System.out.println(hospitals[i]);
+        for (int i = 0; i<hospitals.size(); i++) {
+            System.out.println(hospitals.get(i));
         }*/
 
         matching match = new matching(residents, hospitals);
         match.assign();
-        for (int i = 0; i<residents.length; i++) {
-            System.out.println(residents[i]);
-        }
 
     }
 }

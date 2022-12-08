@@ -12,7 +12,7 @@ public class main {
         ArrayList<Vertex> vertices = new ArrayList<Vertex>(); // vertices that will be provided to the graph 
         ArrayList<Edge> edges = new ArrayList<Edge>(); 
 
-        /*try { //Trying to find the file
+        try { //Trying to find the file
             File file = new File("graphs2.txt");
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
@@ -63,7 +63,7 @@ public class main {
         }
         catch (FileNotFoundException e) { // If we cant find the file
             e.printStackTrace();
-        }*/
+        }
 
         // spices 
 
@@ -131,14 +131,14 @@ public class main {
                 Spice currentSpice = spices.get(current);
                 total += currentSpice.unitPrice; 
                 scoops++; 
-    
                 if (currentSpice.quantity == scoops || i + 1 == cap) {
                     current++; 
                     scoopString += scoops + " scoop of " + currentSpice.color + ", ";
                     scoops = 0; // Re setting the scoops
                 }
-            } else {
-                break;
+            } 
+            else {
+                break; // For the last case
             }
         }
         result += total + " quatloos and contains " + scoopString.substring(0, scoopString.length() - 2) + ".";
