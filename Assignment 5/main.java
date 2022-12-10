@@ -1,13 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.*;
 
 public class main {
     public static void main(String[] args) {
 
-        // dynamic programming
+        // Dynamic programming
+
+        System.out.println("--------------------------------------------------------- Dynamic Programming ---------------------------------------------------------");
 
         ArrayList<Vertex> vertices = new ArrayList<Vertex>(); // vertices that will be provided to the graph 
         ArrayList<Edge> edges = new ArrayList<Edge>(); 
@@ -34,8 +35,8 @@ public class main {
                     }
                     if (firstVertex == 0) {
                         Edge e = new Edge(vertices.get(firstVertex), vertices.get(secondVertex), weight); // Making an edge
-                        edges.add(e); // adding the new edge to the array list of edges
-                        vertices.get(firstVertex).add(e); // getting the edges that are correlated with each vertex;
+                        edges.add(e); // Adding the new edge to the array list of edges
+                        vertices.get(firstVertex).add(e); // Getting the edges that are correlated with each vertex;
                     }
                     else {
                         Edge e = new Edge(vertices.get(firstVertex - 1), vertices.get(secondVertex - 1), weight);
@@ -53,6 +54,7 @@ public class main {
                     edges.clear();
                 }
             }
+            // For the last graph 
             Graph graph = new Graph();
             graph.setGraph(vertices, edges);
             graph.shortest();
@@ -65,11 +67,13 @@ public class main {
             e.printStackTrace();
         }
 
-        // spices 
+        // Spices 
 
-        ArrayList<Spice> spices = new ArrayList<Spice>(); // to hold all the spices
+        System.out.println("--------------------------------------------------------- Greedy Algorithm ---------------------------------------------------------");
 
-        try { //Trying to find the file
+        ArrayList<Spice> spices = new ArrayList<Spice>(); // Hold all the spices
+
+        try { // Trying to find the file
             File file = new File("spice.txt");
             Scanner sc = new Scanner(file);
 
@@ -90,10 +94,10 @@ public class main {
                     // Adding spices to the array list of spices
                     Spice s = new Spice(c, tP, q);
                     if (spices.size() == 0) {
-                        spices.add(s); // adding spices to the array list
+                        spices.add(s); 
                     }
                     else if (spices.get(0).unitPrice > s.unitPrice) {
-                        spices.add(s); // since it is greater than the greatest spice in the list, it should be added in the beginning
+                        spices.add(s); // Since it is greater than the greatest spice in the list, it should be added in the beginning
                     }
                     else {
                         spices.add(0,s); 
@@ -101,10 +105,9 @@ public class main {
                 }
                 else if (item.startsWith("k")) {
                     String[] parse = item.split(" ");
-                    int cap = Integer.parseInt(parse[parse.length-1].substring(0,parse[parse.length-1].length()-1)); // parsing to get the knapsack capacity
+                    int cap = Integer.parseInt(parse[parse.length-1].substring(0,parse[parse.length-1].length()-1)); // Parsing to get the knapsack capacity
                     
-                    System.out.println(greedy(cap, spices)); // Algorithm
-                    // Need to update quantity without messing with anything else   
+                    System.out.println(greedy(cap, spices)); // Algorithm 
                 }
             }
         }
@@ -128,7 +131,7 @@ public class main {
         for (int i = 0; i < cap; i++) { // Fill the knapsack til it reaches it's capacity
             // Scooping the spices
             if (current < spices.size()) {
-                Spice currentSpice = spices.get(current);
+                Spice currentSpice = spices.get(current); // Current spice
                 total += currentSpice.unitPrice; 
                 scoops++; 
                 if (currentSpice.quantity == scoops || i + 1 == cap) {
@@ -138,10 +141,10 @@ public class main {
                 }
             } 
             else {
-                break; // For the last case
+                break; // For the last case because max quantity is 20
             }
         }
         result += total + " quatloos and contains " + scoopString.substring(0, scoopString.length() - 2) + ".";
-        return result;
+        return result;        
     }
 }

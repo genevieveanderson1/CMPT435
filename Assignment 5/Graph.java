@@ -1,34 +1,25 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Graph {
     ArrayList<Vertex> vertexList;
     ArrayList<Edge> edgeList;
-    int[][] adjList; // 2d array - array of an array
-    int[][] matrix;
 
     // Constructor
     public Graph() {
         vertexList = null;
         edgeList = null;
-        adjList = null;
-        matrix = null;
     }
 
     // Parameterized Constructor
     public Graph(ArrayList<Vertex> vList, ArrayList<Edge> eList) {
         vertexList = vList;
         edgeList = eList;
-        adjList = new int[vertexList.size() + 1][vertexList.size() + 1]; // +1 for formatting of the matrix
-        matrix = new int[vertexList.size() + 1][vertexList.size() + 1];
     }
 
     // Setting the Graph
     public void setGraph(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
         vertexList = vertices;
         edgeList = edges;
-        adjList = new int[vertexList.size() + 1][vertexList.size() + 1];
-        matrix = new int[vertexList.size() + 1][vertexList.size() + 1];
     }
 
     // Function for finding the shortest path - bellman ford algorithm

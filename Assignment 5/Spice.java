@@ -17,6 +17,6 @@ public class Spice {
         this.color =  color;
         this.totalPrice = totalPrice;
         this.quantity = quantity;
-        unitPrice = totalPrice/quantity;
+        unitPrice = totalPrice/quantity; // Calculating unit price
     }
 }
