@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class matching {
+
     ArrayList<Resident> residents;
     ArrayList<Hospital> hospitals;
 
@@ -30,7 +31,7 @@ public class matching {
 
             }
             
-            System.out.println("Match found " + r.id + ", " + h.id);
+            System.out.println("Match found! Resident " + r.id + ", " + " Hospital " +  h.id);
             h.residentAssigned.add(r); // Putting the better resident in the worst residents spot
             r.free = false;
 
