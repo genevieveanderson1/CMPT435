@@ -1,10 +1,9 @@
-import java.util.ArrayList;
 import java.util.*;
 
 public class Resident {
-    int id;
-    ArrayList<String> hospitalPrefList;
-    boolean free; // to determine whether they have been assignmd or not
+    int id; // Resident id
+    ArrayList<String> hospitalPrefList; // Resident's list of preferred hosptials 
+    boolean free; // To determine whether they have been assignmd or not
 
     public Resident() {
         id = 0;

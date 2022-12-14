@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class Hospital {
-    int id;
-    ArrayList<String> residentPrefList;
-    ArrayList<Resident> residentAssigned; // residents assigned to hosp
-    int cap; // capacity of hosp
+    int id; // Hospital id
+    ArrayList<String> residentPrefList; // Hospital's list of which residents they prefer
+    ArrayList<Resident> residentAssigned; // Residents assigned to hospital
+    int cap; // Capacity of hospital
 
     public Hospital() {
         id = 0;
